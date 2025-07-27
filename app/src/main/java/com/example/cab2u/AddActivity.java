@@ -95,11 +95,11 @@ public class AddActivity extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 response -> {
                     Log.d("SERVER", "Response: " + response.toString());
-                    Toast.makeText(this, "Server: " + response.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "داده ها ثبت شدند", Toast.LENGTH_SHORT).show();
                 },
                 error -> {
                     error.printStackTrace();
-                    Toast.makeText(this, "Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
                 });
 
         queue.add(request);

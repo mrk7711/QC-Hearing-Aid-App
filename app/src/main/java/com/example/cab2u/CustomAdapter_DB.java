@@ -80,23 +80,23 @@ public class CustomAdapter_DB extends RecyclerView.Adapter<CustomAdapter_DB.MyVi
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateActivity_DB.class);
-                intent.putExtra("id", String.valueOf(book_id.get(position)));
+                Intent intent = new Intent(context, SelectionActivity_DB.class);
+                //intent.putExtra("id", String.valueOf(book_id.get(position)));
                 intent.putExtra("title", String.valueOf(book_title.get(position)));
-                intent.putExtra("author", String.valueOf(book_author.get(position)));
-                intent.putExtra("pages", String.valueOf(book_pages.get(position)));
-                intent.putExtra("pages2", String.valueOf(book_pages2.get(position)));
-                intent.putExtra("pages3", String.valueOf(book_pages3.get(position)));
-                intent.putExtra("pages4", String.valueOf(book_pages4.get(position)));
-                intent.putExtra("pages5", String.valueOf(book_pages5.get(position)));
-                intent.putExtra("pages6", String.valueOf(book_pages6.get(position)));
-                intent.putExtra("pages7", String.valueOf(book_pages7.get(position)));
-                intent.putExtra("pages8", String.valueOf(book_pages8.get(position)));
-                intent.putExtra("pages9", String.valueOf(book_pages9.get(position)));
-                intent.putExtra("pages10", String.valueOf(book_pages10.get(position)));
-                intent.putExtra("pages11", String.valueOf(book_pages11.get(position)));
-                intent.putExtra("pages12", String.valueOf(book_pages12.get(position)));
-                intent.putExtra("pages13", String.valueOf(book_pages13.get(position)));
+//                intent.putExtra("author", String.valueOf(book_author.get(position)));
+//                intent.putExtra("pages", String.valueOf(book_pages.get(position)));
+//                intent.putExtra("pages2", String.valueOf(book_pages2.get(position)));
+//                intent.putExtra("pages3", String.valueOf(book_pages3.get(position)));
+//                intent.putExtra("pages4", String.valueOf(book_pages4.get(position)));
+//                intent.putExtra("pages5", String.valueOf(book_pages5.get(position)));
+//                intent.putExtra("pages6", String.valueOf(book_pages6.get(position)));
+//                intent.putExtra("pages7", String.valueOf(book_pages7.get(position)));
+//                intent.putExtra("pages8", String.valueOf(book_pages8.get(position)));
+//                intent.putExtra("pages9", String.valueOf(book_pages9.get(position)));
+//                intent.putExtra("pages10", String.valueOf(book_pages10.get(position)));
+//                intent.putExtra("pages11", String.valueOf(book_pages11.get(position)));
+//                intent.putExtra("pages12", String.valueOf(book_pages12.get(position)));
+//                intent.putExtra("pages13", String.valueOf(book_pages13.get(position)));
                 activity.startActivityForResult(intent, 1);
             }
         });

@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MainActivity_DB extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -155,24 +156,30 @@ public class MainActivity_DB extends AppCompatActivity {
                             empty_imageview.setVisibility(View.VISIBLE);
                             no_data.setVisibility(View.VISIBLE);
                         } else {
+                            HashSet<String> seenSerials = new HashSet<>();
+
                             for (int i = 0; i < dataArray.length(); i++) {
                                 JSONObject item = dataArray.getJSONObject(i);
-                                book_id.add(item.getString("id"));
-                                book_title.add(item.getString("serial"));
-                                book_author.add(item.getString("max_ospl90"));
-                                book_pages.add(item.getString("hfa_ospl90"));
-                                book_pages2.add(item.getString("fog"));
-                                book_pages3.add(item.getString("ein"));
-                                book_pages4.add(item.getString("current"));
-                                book_pages5.add(item.getString("thd500"));
-                                book_pages6.add(item.getString("thd800"));
-                                book_pages7.add(item.getString("thd1600"));
-                                book_pages8.add(item.getString("f1"));
-                                book_pages9.add(item.getString("f2"));
-                                book_pages10.add(item.getString("temp"));
-                                book_pages11.add(item.getString("humidity"));
-                                book_pages12.add(item.getString("producer"));
-                                book_pages13.add(item.getString("qc_operator"));
+                                String serial = item.getString("serial");
+                                if (!seenSerials.contains(serial)) {
+                                    seenSerials.add(serial);
+                                    book_id.add(item.getString("id"));
+                                    book_title.add(item.getString("serial"));
+                                    book_author.add(item.getString("max_ospl90"));
+                                    book_pages.add(item.getString("hfa_ospl90"));
+                                    book_pages2.add(item.getString("fog"));
+                                    book_pages3.add(item.getString("ein"));
+                                    book_pages4.add(item.getString("current"));
+                                    book_pages5.add(item.getString("thd500"));
+                                    book_pages6.add(item.getString("thd800"));
+                                    book_pages7.add(item.getString("thd1600"));
+                                    book_pages8.add(item.getString("f1"));
+                                    book_pages9.add(item.getString("f2"));
+                                    book_pages10.add(item.getString("temp"));
+                                    book_pages11.add(item.getString("humidity"));
+                                    book_pages12.add(item.getString("producer"));
+                                    book_pages13.add(item.getString("qc_operator"));
+                                }
                             }
 
                             empty_imageview.setVisibility(View.GONE);
@@ -209,7 +216,7 @@ public class MainActivity_DB extends AppCompatActivity {
                         String message = response.getString("message");
 
                         if ("ok".equals(status)) {
-                            Toast.makeText(this, "همه داده‌ها با موفقیت حذف شدند", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "همه داده‌ها حذف شدند", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(this, "خطا در حذف داده‌ها: " + message, Toast.LENGTH_SHORT).show();
                         }

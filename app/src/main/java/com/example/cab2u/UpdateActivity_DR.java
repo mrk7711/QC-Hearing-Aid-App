@@ -72,7 +72,8 @@ public class UpdateActivity_DR extends AppCompatActivity {
                 pages5 = pages_input5.getText().toString().trim();
                 pages6 = pages_input6.getText().toString().trim();
                 pages7 = pages_input7.getText().toString().trim();
-                updateDataToServer(id,title,author,pages,pages2,pages3,pages4,pages5,pages6,pages7,pages8,pages9,pages10,pages11,pages12,pages13);
+                sendNumbersToServer(title,author,pages,pages2,pages3,pages4,pages5,pages6,pages7,pages8,pages9,pages10,pages11,pages12,pages13);
+                //updateDataToServer(id,title,author,pages,pages2,pages3,pages4,pages5,pages6,pages7,pages8,pages9,pages10,pages11,pages12,pages13);
                 //myDB.updateData2(id, title, author, pages, pages2, pages3, pages4, pages5, pages6, pages7);
             }
         });
@@ -174,7 +175,7 @@ public class UpdateActivity_DR extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 response -> {
                     Log.d("SERVER", "Delete Response: " + response.toString());
-                    Toast.makeText(this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "داده ها با موفقیت حذف شدند.", Toast.LENGTH_SHORT).show();
                 },
                 error -> {
                     error.printStackTrace();
@@ -235,5 +236,43 @@ public class UpdateActivity_DR extends AppCompatActivity {
         }
     }
 
+    private void sendNumbersToServer(String serial, String max_ospl90, String hfa_ospl90, String fog, String ein, String current,
+                                     String thd500, String thd800, String thd1600, String f1, String f2, String temp,String humidity,
+                                     String producer, String qc_operator) {
+        String url = "https://mohammadreza-karimi.ir/api/insert_numbers_dr1.php";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("serial", serial);
+            jsonBody.put("max_ospl90", max_ospl90);
+            jsonBody.put("hfa_ospl90", hfa_ospl90);
+            jsonBody.put("fog", fog);
+            jsonBody.put("ein", ein);
+            jsonBody.put("current", current);
+            jsonBody.put("thd500", thd500);
+            jsonBody.put("thd800", thd800);
+            jsonBody.put("thd1600", thd1600);
+            jsonBody.put("f1", f1);
+            jsonBody.put("f2", f2);
+            jsonBody.put("temp", temp);
+            jsonBody.put("humidity", humidity);
+            jsonBody.put("producer", producer);
+            jsonBody.put("qc_operator", qc_operator);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
 
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+                response -> {
+                    Log.d("SERVER", "Response: " + response.toString());
+                    Toast.makeText(this, "داده ها آپدیت شدند", Toast.LENGTH_SHORT).show();
+                },
+                error -> {
+                    error.printStackTrace();
+                    Toast.makeText(this, "Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                });
+
+        queue.add(request);
+    }
 }

@@ -22,4 +22,8 @@ An Android application for managing and syncing hearing aid quality control data
 - MySQL
 - JSON
 
+![PCB](arnica.png)
+
+![PCB1](arnica2.png)
+
 
